@@ -47,37 +47,33 @@ public class Book {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o){
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()){
-            return false;
-        }
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
 
         Book book = (Book) o;
 
-        if (year != book.year){
+        if (title != null ? !title.equals(book.title) : book.title != null){
             return false;
         }
-        if (numberPage != book.numberPage){
+        if (authors != null ? !authors.equals(book.authors) : book.authors != null){
             return false;
         }
-        if (!title.equals(book.title)){
+        if (publisher != null ? !publisher.equals(book.publisher) : book.publisher != null){
             return false;
         }
-        if (!authors.equals(book.authors)){
+        if (year != null ? !year.equals(book.year) : book.year != null){
             return false;
         }
-        return publisher.equals(book.publisher);
+        return numberPage != null ? numberPage.equals(book.numberPage) : book.numberPage == null;
     }
 
     @Override
     public int hashCode() {
-        int result = title.hashCode();
-        result = 31 * result + authors.hashCode();
-        result = 31 * result + publisher.hashCode();
-        result = 31 * result + year;
-        result = 31 * result + numberPage;
+        int result = title != null ? title.hashCode() : 0;
+        result = 31 * result + (authors != null ? authors.hashCode() : 0);
+        result = 31 * result + (publisher != null ? publisher.hashCode() : 0);
+        result = 31 * result + (year != null ? year.hashCode() : 0);
+        result = 31 * result + (numberPage != null ? numberPage.hashCode() : 0);
         return result;
     }
 }
